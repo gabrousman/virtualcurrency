@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/sendmoney', 'TransactionController@sendmoney')->name('sendmoney');
+Route::get('/transactions', 'TransactionController@list')->name('transactions');
+Route::get('/moneyrecieved', 'TransactionController@moneyrecieved')->name('moneyrecieved');
+Route::get('/markasread', 'TransactionController@MarkNotifications')->name('markasread');
+
+Route::post('/sendmoney', 'TransactionController@moneysent');

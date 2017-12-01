@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,4 +27,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected function getOtherUsers($userid)
+    {
+        //return $this::all();
+        return DB::table('users')
+                     ->select('*')
+                     ->where('id', '<>', $userid)
+                     ->get();        
+    }
+    protected function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    protected function transactiondetails()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }    
+
 }

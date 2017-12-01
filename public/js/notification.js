@@ -1,0 +1,6 @@
+function MarkAsRead()
+{
+	
+	$.get( "/markasread");
+
+}
